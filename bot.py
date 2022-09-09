@@ -74,8 +74,6 @@ async def on_message(message):
         except:
           await message.channel.send('Error creating chat! Make sure player names are spelled correctly!')
 
-
-            
   #If the message starts with '!winners'
   if message.content.startswith('!winners'):
     #Create the output table of winners.
@@ -108,5 +106,8 @@ async def on_message(message):
   if message.content.startswith('!devs'):
     #Output the new amsterdam message.
     await message.channel.send("This bot was developed by Harrison Jumper & Juliana Sica")
-          
+
+  if message.content.startswith('!gloose'):
+    await message.channel.send(file=discord.File('gloose.jfif'))
+
 client.run(TOKEN)
