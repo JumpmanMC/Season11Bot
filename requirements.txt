@@ -9,6 +9,7 @@ click==8.0.1
 colorama==0.4.4
 Deprecated==1.2.13
 discord==1.7.3
+discord.ext==0.8
 discord.py==1.7.3
 gitdb==4.0.7
 GitPython==3.1.18
@@ -27,6 +28,7 @@ PyYAML==5.4.1
 requests==2.26.0
 six==1.16.0
 smmap==4.0.0
+table2ascii==0.3.0
 toml==0.10.2
 tqdm==4.62.2
 typing_extensions==4.3.0
