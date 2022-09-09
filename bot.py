@@ -109,4 +109,4 @@ async def on_message(message):
     #Output the new amsterdam message.
     await message.channel.send("This bot was developed by Harrison Jumper & Juliana Sica")
           
-client.run(my_secret)
+client.run(TOKEN)
