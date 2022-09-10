@@ -95,7 +95,7 @@ async def on_message(message):
     )
     await message.channel.send(f"```\n{output}\n```")
 
-  #If the message starts with '!zen'
+  #If the message starts with '!new_amsterdam'
   if message.content.startswith('!new_amsterdam'):
     #Output the new amsterdam message.
     with open('new_amsterdam.txt') as f:
@@ -107,7 +107,14 @@ async def on_message(message):
     #Output the new amsterdam message.
     await message.channel.send("This bot was developed by Harrison Jumper & Juliana Sica")
 
+  #If the message starts with '!gloose'
   if message.content.startswith('!gloose'):
+    #send the gloose image
     await message.channel.send(file=discord.File('gloose.jfif'))
+
+  #If the message starts with '!commands'
+  if message.content.startswith('!commands'):
+    #Output the new amsterdam message.
+    await message.channel.send("!alliance_chat\n!gloose\n!devs\n!winners\n!new_amsterdam")
 
 client.run(TOKEN)
