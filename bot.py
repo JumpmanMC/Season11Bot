@@ -115,6 +115,6 @@ async def on_message(message):
   #If the message starts with '!commands'
   if message.content.startswith('!commands'):
     #Output the new amsterdam message.
-    await message.channel.send("!alliance_chat\n!gloose\n!devs\n!winners\n!new_amsterdam")
+    await message.channel.send("alliance_chat\ngloose\ndevs\nwinners\nnew_amsterdam")
 
 client.run(TOKEN)
