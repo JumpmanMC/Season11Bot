@@ -60,6 +60,11 @@ async def on_message(message):
       hol = discord.utils.get(message.guild.roles, name="Head of Logistics")
       #open the channel to head of logistics
       overwrites[hol] = discord.PermissionOverwrite(read_messages=True)
+
+      #finds members with the head of filming role
+      hof = discord.utils.get(message.guild.roles, name="Head of Filming")
+      #open the channel to head of filming
+      overwrites[hof] = discord.PermissionOverwrite(read_messages=True)
       
       #Finds the 'Alliance Chats' category 
       category = discord.utils.get(message.guild.categories, name="Alliance Chats")
