@@ -117,6 +117,12 @@ async def on_message(message):
     #send the gloose image
     await message.channel.send(file=discord.File('gloose.jfif'))
 
+  #If the message starts with '!help'
+  if message.content.startswith('!help'):
+    #send the documentation
+    await message.channel.send("https://docs.google.com/document/d/1mRM8xl5f2_zhOgsapYVhOHUXql13RGacO_wCArEuyuU/edit?usp=sharing")
+
+
   #If the message starts with '!commands'
   if message.content.startswith('!commands'):
     #Output the new amsterdam message.
