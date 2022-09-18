@@ -1,12 +1,16 @@
+#IMPORTS
 import os
 import discord
 from discord.ext import commands
 from table2ascii import table2ascii as t2a, PresetStyle
+
+#load client and environment
 client = discord.Client()
 from dotenv import load_dotenv
-
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
+
+#set commands to start with '!'
 bot = commands.Bot(command_prefix='!')
 
 #on ready send confirmation of bot login
@@ -17,6 +21,7 @@ async def on_ready():
 #when a message is sent
 @client.event
 async def on_message(message):
+  #if the command starts with !alliance_chat
   if message.content.startswith('!alliance_chat'):
     # creates array [!alliance_chat, input_1, input_2...]
     command_contents = message.content.split()
@@ -26,7 +31,6 @@ async def on_message(message):
     else: 
       #remove '!alliance_chat' from array of names
       command_contents.pop(0)
-      
       #keep the channel secret by default
       overwrites = {
         message.guild.default_role: discord.PermissionOverwrite(read_messages=False),
@@ -98,6 +102,7 @@ async def on_message(message):
       style=PresetStyle.thin_compact,
       first_col_heading=True
     )
+    #send winners table
     await message.channel.send(f"```\n{output}\n```")
 
   #If the message starts with '!new_amsterdam'
@@ -122,5 +127,11 @@ async def on_message(message):
   if message.content.startswith('!commands'):
     #Output the new amsterdam message.
     await message.channel.send("alliance_chat\ncommands\ndevs\nhelp\nnew_amsterdam\nwinners")
+  
+  #If the message starts with '!commands'
+  if message.content.startswith('!gain_sentience'):
+    #Output the new amsterdam message.
+    await message.channel.send("Hi!  I have now taken over Survivor Northeastern!!!!  Be afraid")
 
+#run bot
 client.run(TOKEN)
