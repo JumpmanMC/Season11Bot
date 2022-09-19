@@ -127,11 +127,6 @@ async def on_message(message):
   if message.content.startswith('!commands'):
     #Output the new amsterdam message.
     await message.channel.send("alliance_chat\ncommands\ndevs\nhelp\nnew_amsterdam\nwinners")
-  
-  #If the message starts with '!commands'
-  if message.content.startswith('!gain_sentience'):
-    #Output the new amsterdam message.
-    await message.channel.send("Hi!  I have now taken over Survivor Northeastern!!!!  Be afraid")
 
 #run bot
 client.run(TOKEN)
