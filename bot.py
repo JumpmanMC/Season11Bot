@@ -131,7 +131,7 @@ async def on_message(message):
   #If the message starts with '!birthday'
   if message.content.startswith('!birthday'):
     #Output the video link.
-    await message.channel.send("https://discord.com/channels/@me/630528842313760790/1021998516194783282")
+    await message.channel.send("https://www.youtube.com/watch?v=Iy_w2_C1zlc")
 
 #run bot
 client.run(TOKEN)
