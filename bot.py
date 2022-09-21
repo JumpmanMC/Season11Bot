@@ -127,6 +127,11 @@ async def on_message(message):
   if message.content.startswith('!commands'):
     #Output the new amsterdam message.
     await message.channel.send("alliance_chat\ncommands\ndevs\nhelp\nnew_amsterdam\nwinners")
+  
+  #If the message starts with '!birthday'
+  if message.content.startswith('!birthday'):
+    #Output the video link.
+    await message.channel.send("https://discord.com/channels/@me/630528842313760790/1021998516194783282")
 
 #run bot
 client.run(TOKEN)
