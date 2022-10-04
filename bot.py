@@ -98,6 +98,24 @@ async def on_message(message):
     #send the documentation
     await message.channel.send("https://docs.google.com/document/d/1mRM8xl5f2_zhOgsapYVhOHUXql13RGacO_wCArEuyuU/edit?usp=sharing")
   
+  #If the message starts with '!host'
+  if message.content.startswith('!host'):
+    #Create the output table of hosts.
+    print("hosts")
+    output = t2a(
+      header=["Seasons", "Host"],
+      body=[[11-12, 'Payton McAlice'],
+            [9-10, 'Lauren Murphy'],
+            [7-8, 'Andy Lok'], 
+            [6-7, 'Andrew Carlson'],
+            [3-5, 'Rob'],
+            [1-2, 'Casey Abel'],],
+      style=PresetStyle.thin_compact,
+      first_col_heading=True
+    )
+    #send host table
+    await message.channel.send(f"```\n{output}\n```")
+
   #If the message starts with '!new_amsterdam'
   if message.content.startswith('!new_amsterdam'):
     #Output the new amsterdam message.
