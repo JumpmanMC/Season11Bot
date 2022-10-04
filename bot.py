@@ -83,6 +83,28 @@ async def on_message(message):
         except:
           await message.channel.send('Error creating chat! Make sure player names are spelled correctly!')
 
+  #If the message starts with '!commands'
+  if message.content.startswith('!commands'):
+    #Output the new amsterdam message.
+    await message.channel.send("alliance_chat\ncommands\ndevs\nhelp\nnew_amsterdam\nwinners")
+
+  #If the message starts with '!devs'
+  if message.content.startswith('!devs'):
+    #Output the new amsterdam message.
+    await message.channel.send("This bot was developed by Harrison Jumper & Juliana Sica")
+  
+  #If the message starts with '!help'
+  if message.content.startswith('!help'):
+    #send the documentation
+    await message.channel.send("https://docs.google.com/document/d/1mRM8xl5f2_zhOgsapYVhOHUXql13RGacO_wCArEuyuU/edit?usp=sharing")
+  
+  #If the message starts with '!new_amsterdam'
+  if message.content.startswith('!new_amsterdam'):
+    #Output the new amsterdam message.
+    with open('new_amsterdam.txt') as f:
+      text = f.read()
+      await message.channel.send(text)
+
   #If the message starts with '!winners'
   if message.content.startswith('!winners'):
     #Create the output table of winners.
@@ -104,29 +126,6 @@ async def on_message(message):
     )
     #send winners table
     await message.channel.send(f"```\n{output}\n```")
-
-  #If the message starts with '!new_amsterdam'
-  if message.content.startswith('!new_amsterdam'):
-    #Output the new amsterdam message.
-    with open('new_amsterdam.txt') as f:
-      text = f.read()
-      await message.channel.send(text)
-
-  #If the message starts with '!devs'
-  if message.content.startswith('!devs'):
-    #Output the new amsterdam message.
-    await message.channel.send("This bot was developed by Harrison Jumper & Juliana Sica")
-
-  #If the message starts with '!help'
-  if message.content.startswith('!help'):
-    #send the documentation
-    await message.channel.send("https://docs.google.com/document/d/1mRM8xl5f2_zhOgsapYVhOHUXql13RGacO_wCArEuyuU/edit?usp=sharing")
-
-
-  #If the message starts with '!commands'
-  if message.content.startswith('!commands'):
-    #Output the new amsterdam message.
-    await message.channel.send("alliance_chat\ncommands\ndevs\nhelp\nnew_amsterdam\nwinners")
 
 #run bot
 client.run(TOKEN)
