@@ -125,8 +125,16 @@ async def on_message(message):
 
   #If the message starts with '!request_filmer'
   if message.content.startswith('!request_filmer'):
+    #store id of the filming chanel
     id = 972228042686615663
+    #get the filming channel
     channel = client.get_channel(id)
+    #get array of command contents
+    command_contents = message.content.split()
+    #throw error if fewer than 2 inputs
+    if len(command_contents) < 2:
+      await message.channel.send('Description of what will be filmed and when is needed!')
+    #sends the filming request to the filming channel
     await channel.send("Filmer requested: " + message.content[15:])
 
   #If the message starts with '!winners'
