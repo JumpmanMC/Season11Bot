@@ -125,7 +125,8 @@ async def on_message(message):
 
   #If the message starts with '!request_filmer'
   if message.content.startswith('!request_filmer'):
-    channel = discord.utils.get(client.guild.channels, name="Filming")
+    id = 972228042686615663
+    channel = client.get_channel(id)
     channel.send(message.content)
 
   #If the message starts with '!winners'
