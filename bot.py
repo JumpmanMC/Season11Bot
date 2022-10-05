@@ -91,7 +91,7 @@ async def on_message(message):
   #If the message starts with '!devs'
   if message.content.startswith('!devs'):
     #Output the new amsterdam message.
-    await message.channel.send("This bot was developed by Harrison Jumper & Juliana Sica")
+    await message.channel.send("This bot was developed by Harrison Jumper with additional programming by Juliana Sica")
   
   #If the message starts with '!help'
   if message.content.startswith('!help'):
@@ -122,6 +122,11 @@ async def on_message(message):
     with open('new_amsterdam.txt') as f:
       text = f.read()
       await message.channel.send(text)
+
+  #If the message starts with '!request_filmer'
+  if message.content.startswith('!request_filmer'):
+    channel = discord.utils.get(client.guild.channels, name="Filming")
+    channel.send(message.content)
 
   #If the message starts with '!winners'
   if message.content.startswith('!winners'):
