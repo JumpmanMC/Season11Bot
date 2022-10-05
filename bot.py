@@ -127,7 +127,7 @@ async def on_message(message):
   if message.content.startswith('!request_filmer'):
     id = 972228042686615663
     channel = client.get_channel(id)
-    channel.send(message.content)
+    channel.send("if you are seeing this message Harrison got something working!!!!")
 
   #If the message starts with '!winners'
   if message.content.startswith('!winners'):
