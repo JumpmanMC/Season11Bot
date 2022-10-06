@@ -169,9 +169,9 @@ async def on_reaction_add(reaction, user):
            #get the filming channel
            channel = client.get_channel(id)
            print(channel)
-           print(reaction.message)
-           #if(reaction.message[:15] == '!request_filmer'):
-           await channel.send("reaL!")
+           print(reaction.message.content[:15])
+           if(reaction.message.content[:15] == '!request_filmer'):
+            await channel.send("reaL!")
            
 #run bot
 client.run(TOKEN)
