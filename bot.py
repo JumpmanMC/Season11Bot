@@ -127,7 +127,6 @@ async def on_message(message):
   if message.content.startswith('!request_filmer'):
     #store id of the filming chanel
     id = 972228042686615663
-    #id = 1018245857935634542
     #get the filming channel
     channel = client.get_channel(id)
     #get array of command contents
@@ -136,7 +135,7 @@ async def on_message(message):
     if len(command_contents) < 2:
       await message.channel.send('Description of what will be filmed and when is needed!')
     #sends the filming request to the filming channel
-    await channel.send("Filmer requested: " + message.content[15:] + " (" + channel.name + ")")
+    await channel.send("Filmer requested: " + message.content[15:] + " (" + message.channel.name + ")")
 
   #If the message starts with '!winners'
   if message.content.startswith('!winners'):
@@ -171,11 +170,7 @@ async def on_reaction_add(reaction, user):
            channel = client.get_channel(id)
            if((reaction.message.content[:17] == 'Filmer requested:') & (reaction.count < 2)):
             chat_name = reaction.message.content.split('(')[1].split(')')[0]
-            print(chat_name)
-            #id = 972228042686615663
-            id = 1018245857935634542
-            #get the filming channel
-            channel = client.get_channel(id)
+            channel = discord.utils.get(client.get_all_channels(), guild__name=chat_name)
             #channel = discord.utils.get(client.get_all_channels(), name=chat_name)
             await channel.set_permissions(user, read_messages=True)
            
