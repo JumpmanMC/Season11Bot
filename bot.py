@@ -108,8 +108,8 @@ async def on_message(message):
             ['9-10', 'Lauren Murphy'],
             ['7-8', 'Andy Lok'], 
             ['6-7', 'Andrew Carlson'],
-            ['3-5', 'Rob'],
-            ['1-2', 'Casey Abel'],],
+            ['4-5', 'Rob Mennuti'],
+            ['1-3', 'Casey Abel'],],
       style=PresetStyle.thin_compact,
       first_col_heading=True
     )
@@ -158,6 +158,15 @@ async def on_message(message):
     )
     #send winners table
     await message.channel.send(f"```\n{output}\n```")
+
+@client.event
+async def on_reaction_add(reaction, user):
+    if user != client.user:
+        if str(reaction.emoji) == "'👍'":
+           id = 972228042686615663
+           #get the filming channel
+           channel = client.get_channel(id)
+           await channel.send("reaL!")
 
 #run bot
 client.run(TOKEN)
