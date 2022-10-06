@@ -126,7 +126,8 @@ async def on_message(message):
   #If the message starts with '!request_filmer'
   if message.content.startswith('!request_filmer'):
     #store id of the filming chanel
-    id = 972228042686615663
+    #id = 972228042686615663
+    id = 1018245857935634542
     #get the filming channel
     channel = client.get_channel(id)
     #get array of command contents
@@ -168,9 +169,9 @@ async def on_reaction_add(reaction, user):
            #get the filming channel
            channel = client.get_channel(id)
            print(channel)
-           print(reaction.message[:15])
-           if(reaction.message[:15] == '!request_filmer'):
-            await channel.send("reaL!")
+           print(reaction.message)
+           #if(reaction.message[:15] == '!request_filmer'):
+           await channel.send("reaL!")
            
 #run bot
 client.run(TOKEN)
