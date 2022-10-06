@@ -171,7 +171,7 @@ async def on_reaction_add(reaction, user):
            if(reaction.message.content[:17] == 'Filmer requested:'):
             chat_name = reaction.message.content.split('(')[1].split(')')[0]
             channel = discord.utils.get(client.get_all_channels(), name=chat_name)
-            await channel.set_permissions(user, send_messages=False)
+            await channel.set_permissions(user, read_messages=True)
             await channel.send("reaL!")
            
 #run bot
