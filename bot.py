@@ -177,7 +177,9 @@ async def on_reaction_add(reaction, user):
             channel = client.get_channel(id)
             print(channel)
             #channel = discord.utils.get(client.get_all_channels(), name=chat_name)
-            await channel.set_permissions(user, read_messages=True)
+            prod = discord.utils.get(reaction.message.guild.roles, name="Prod")
+            if prod in user.roles:
+              await channel.set_permissions(user, read_messages=True)
            
 #run bot
 client.run(TOKEN)
