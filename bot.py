@@ -136,7 +136,7 @@ async def on_message(message):
     if len(command_contents) < 2:
       await message.channel.send('Description of what will be filmed and when is needed!')
     #sends the filming request to the filming channel
-    await channel.send("Filmer requested: " + message.content[15:])
+    await channel.send("Filmer requested: " + message.content[15:] + channel.name)
 
   #If the message starts with '!winners'
   if message.content.startswith('!winners'):
@@ -168,9 +168,7 @@ async def on_reaction_add(reaction, user):
            id = 1018245857935634542
            #get the filming channel
            channel = client.get_channel(id)
-           print(channel)
-           print(reaction.message.content[:15])
-           if(reaction.message.content[:15] == '!request_filmer'):
+           if(reaction.message.content[:17] == 'Filmer requested:'):
             await channel.send("reaL!")
            
 #run bot
