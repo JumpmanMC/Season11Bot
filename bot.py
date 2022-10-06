@@ -162,6 +162,7 @@ async def on_message(message):
 
 @client.event
 async def on_reaction_add(reaction, user):
+    print(user)
     if user != client.user:
         if str(reaction.emoji) == "👍":
            #id = 972228042686615663
@@ -171,10 +172,8 @@ async def on_reaction_add(reaction, user):
            if((reaction.message.content[:17] == 'Filmer requested:') & (reaction.count < 2)):
             chat_name = reaction.message.content.split('(')[1].split(')')[0]
             print(chat_name)
-            channel = discord.utils.get(client.get_all_channels(), name=chat_name)
-            print(channel)
+            #channel = discord.utils.get(client.get_all_channels(), name=chat_name)
             await channel.set_permissions(user, read_messages=True)
-            await channel.send("reaL!")
            
 #run bot
 client.run(TOKEN)
