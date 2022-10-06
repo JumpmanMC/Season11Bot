@@ -162,6 +162,7 @@ async def on_message(message):
 @client.event
 async def on_reaction_add(reaction, user):
     if user != client.user:
+        print(str(reaction.emoji))
         if str(reaction.emoji) == "'👍'":
            id = 972228042686615663
            #get the filming channel
