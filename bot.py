@@ -168,6 +168,7 @@ async def on_reaction_add(reaction, user):
            id = 972228042686615663
            #get the filming channel
            channel = client.get_channel(id)
+           print(channel)
            await channel.send("reaL!")
 
 #run bot
