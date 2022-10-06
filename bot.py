@@ -162,23 +162,23 @@ async def on_message(message):
 @client.event
 async def on_reaction_add(reaction, user):
     if user != client.user:
+        #if a message is given a thumbs up reaction
         if str(reaction.emoji) == "👍":
-           id = 972228042686615663
-           #id = 1018245857935634542
-           #get the filming channel
-           channel = client.get_channel(id)
+          #if the message is a filming request and this is the first reaction
            if((reaction.message.content[:17] == 'Filmer requested:') & (reaction.count < 2)):
+            #parse out the chat it was sent from
             chat_name = reaction.message.content.split('(::')[1].split(')')[0]
-            print(chat_name)
+            #find the corresponding channel
             channel = discord.utils.get(client.get_all_channels(), name=chat_name)
+            #pull the channel id
             id = channel.id
-            print(channel)
-            print(channel.id)
+            #get channel object
             channel = client.get_channel(id)
-            print(channel)
-            #channel = discord.utils.get(client.get_all_channels(), name=chat_name)
+            #get prod role
             prod = discord.utils.get(reaction.message.guild.roles, name="Prod")
+            #if a prod member liked the message
             if prod in user.roles:
+              #add the user to chanel
               await channel.set_permissions(user, read_messages=True)
            
 #run bot
