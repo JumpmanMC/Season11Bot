@@ -86,7 +86,7 @@ async def on_message(message):
   #If the message starts with '!commands'
   if message.content.startswith('!commands'):
     #Output the new amsterdam message.
-    await message.channel.send("alliance_chat\ncommands\ndevs\nhelp\nnew_amsterdam\nwinners")
+    await message.channel.send("alliance_chat\ncommands\ndevs\nhelp\nnew_amsterdam\nrequest_filmer\nwinners")
 
   #If the message starts with '!devs'
   if message.content.startswith('!devs'):
@@ -134,8 +134,10 @@ async def on_message(message):
     #throw error if fewer than 2 inputs
     if len(command_contents) < 2:
       await message.channel.send('Description of what will be filmed and when is needed!')
+    #get prod role
+    prod = discord.utils.get(message.guild.roles, name="Prod")
     #sends the filming request to the filming channel
-    await channel.send("Filmer requested: " + message.content[15:] + " (::" + message.channel.name + ")")
+    await channel.send("Filmer requested: " + message.content[15:] + " (::" + message.channel.name + ")" + prod.mention)
 
   #If the message starts with '!winners'
   if message.content.startswith('!winners'):
