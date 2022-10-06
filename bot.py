@@ -126,8 +126,8 @@ async def on_message(message):
   #If the message starts with '!request_filmer'
   if message.content.startswith('!request_filmer'):
     #store id of the filming chanel
-    #id = 972228042686615663
-    id = 1018245857935634542
+    id = 972228042686615663
+    #id = 1018245857935634542
     #get the filming channel
     channel = client.get_channel(id)
     #get array of command contents
