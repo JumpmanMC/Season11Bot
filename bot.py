@@ -164,7 +164,7 @@ async def on_reaction_add(reaction, user):
     print("reaction detected")
     if user != client.user:
         print(str(reaction.emoji))
-        if str(reaction.emoji) == "'👍'":
+        if str(reaction.emoji) == "👍":
            id = 972228042686615663
            #get the filming channel
            channel = client.get_channel(id)
