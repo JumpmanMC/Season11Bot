@@ -180,6 +180,12 @@ async def on_reaction_add(reaction, user):
             prod = discord.utils.get(reaction.message.guild.roles, name="Prod")
             #if a prod member liked the message
             if prod in user.roles:
+              filming_channel = discord.utils.get(client.get_all_channels(), name="filming")
+              #pull the channel id
+              filming_id = channel.id
+              #get channel object
+              filming_channelchannel = client.get_channel(id)
+              await filming_channel.send(user + "is filming" + chat_name)
               #add the user to chanel
               await channel.set_permissions(user, read_messages=True)
            
