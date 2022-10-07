@@ -191,7 +191,7 @@ async def on_reaction_add(reaction, user):
               #print("message sent")
               #add the user to chanel and send filmer confirmation
               await channel.set_permissions(user, read_messages=True)
-              await channel.send(user + " is filming the requested meeting")
+              await channel.send(str(user) + " is filming the requested meeting")
            
 #run bot
 client.run(TOKEN)
