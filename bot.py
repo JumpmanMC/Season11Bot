@@ -181,10 +181,9 @@ async def on_reaction_add(reaction, user):
             #if a prod member liked the message
             if prod in user.roles:
               #pull the channel id
-              filming_id = id = 972228042686615663
+              filming_id = 1028066374448328804
               #get channel object
               filming_channel = client.get_channel(filming_id)
-              print(filming_channel)
               #send who is filming meeting to filming channel
               await filming_channel.send(str(user.display_name) + " is filming the requested meeting: " + reaction.message.content[17:].split('(')[0])
               #add the user to chanel and send filmer confirmation
