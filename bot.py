@@ -187,7 +187,7 @@ async def on_reaction_add(reaction, user):
               #get channel object
               filming_channel = client.get_channel(filming_id)
               #send who is filming meeting to filming channel
-              await filming_channel.send(user + " is filming " + chat_name)
+              await filming_channel.send(str(user) + " is filming " + chat_name)
               #print("message sent")
               #add the user to chanel and send filmer confirmation
               await channel.set_permissions(user, read_messages=True)
