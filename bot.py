@@ -90,7 +90,12 @@ async def on_message(message):
 
   #if the command starts with !create_open_channel
   if message.content.startswith('!create_open_channel'):
-    await message.channel.send(message.content(20:))
+    command_contents = message.content.split()
+    #throw error if fewer than 2 inputs
+    if len(command_contents) < 2:
+      await message.channel.send('Channel name needed!')
+    else:
+      await message.channel.send("Channel " + message.content[20:] + " created!")
 
   #If the message starts with '!devs'
   if message.content.startswith('!devs'):
