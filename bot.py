@@ -95,7 +95,21 @@ async def on_message(message):
     if len(command_contents) < 2:
       await message.channel.send('Channel name needed!')
     else:
-      await message.channel.send("Channel " + message.content[20:] + " created!")
+      overwrites = {
+        message.guild.default_role: discord.PermissionOverwrite(read_messages=False),
+        message.guild.me: discord.PermissionOverwrite(read_messages=True)
+      }
+
+      #finds members with the head of logistics role
+      hol = discord.utils.get(message.guild.roles, name="Head of Logistics")
+      #open the channel to head of logistics
+      overwrites[hol] = discord.PermissionOverwrite(read_messages=True)
+
+      eboard = discord.utils.get(message.guild.roles, name="Eboard")
+      botmaster = discord.utils.get(message.guild.roles, name="Botmaster")
+      if eboard in message.author.roles | botmaster in message.author.roles:
+        await message.guild.create_text_channel(message.content[20:], overwrites=overwrites, category=category)
+        await message.channel.send("Thumbs up this message to join channel:" + message.content[20:])
 
   #If the message starts with '!devs'
   if message.content.startswith('!devs'):
@@ -198,6 +212,10 @@ async def on_reaction_add(reaction, user):
               #add the user to chanel and send filmer confirmation
               await channel.set_permissions(user, read_messages=True)
               await channel.send(str(user.display_name) + " is filming the requested meeting: " + reaction.message.content[17:].split('(')[0])
-           
+            if(reaction.message.content[:38] == 'Thumbs up this message to join channel:'):
+              chat_name = reaction.message.content.split(':')[1]
+              channel = discord.utils.get(client.get_all_channels(), name=chat_name)
+              await channel.set_permissions(user, read_messages=True)
+  
 #run bot
 client.run(TOKEN)
