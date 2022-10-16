@@ -88,6 +88,10 @@ async def on_message(message):
     #Output the new amsterdam message.
     await message.channel.send("alliance_chat\ncommands\ndevs\nhelp\nhosts\nnew_amsterdam\nrequest_filmer\nwinners")
 
+  #if the command starts with !create_open_channel
+  if message.content.startswith('!create_open_channel'):
+    await message.channel.send(message.content(20:))
+
   #If the message starts with '!devs'
   if message.content.startswith('!devs'):
     #Output the new amsterdam message.
@@ -137,7 +141,7 @@ async def on_message(message):
     #get prod role
     prod = discord.utils.get(message.guild.roles, name="Prod")
     #sends the filming request to the filming channel
-    await channel.send("Filmer requested: " + message.content[15:] + " (::" + message.channel.name + ")" + prod.mention)
+    await channel.send("Filmer requested: " + message.content[15:] + " (::" + message.channel.name + ") " + prod.mention)
 
   #If the message starts with '!winners'
   if message.content.startswith('!winners'):
@@ -184,7 +188,7 @@ async def on_reaction_add(reaction, user):
               filming_id = 1028066374448328804
               #get channel object
               filming_channel = client.get_channel(filming_id)
-              #send who is filming meeting to filming channel
+              #send who is filming meeting to filming_messages channel
               await filming_channel.send(str(user.display_name) + " is filming the requested meeting: " + reaction.message.content[17:].split('(')[0])
               #add the user to chanel and send filmer confirmation
               await channel.set_permissions(user, read_messages=True)
