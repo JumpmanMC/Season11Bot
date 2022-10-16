@@ -106,7 +106,7 @@ async def on_message(message):
       overwrites[hol] = discord.PermissionOverwrite(read_messages=True)
 
       eboard = discord.utils.get(message.guild.roles, name="Eboard")
-      botmaster = discord.utils.get(message.guild.roles, name="Botmaster")
+      botmaster = discord.utils.get(message.guild.roles, name="BotMaster")
       if ((eboard in message.author.roles) | (botmaster in message.author.roles)):
         await message.guild.create_text_channel(message.content[20:], overwrites=overwrites, category=category)
         await message.channel.send("Thumbs up this message to join channel:" + message.content[20:])
