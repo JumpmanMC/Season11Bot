@@ -115,8 +115,8 @@ async def on_message(message):
       if ((eboard in message.author.roles) | (botmaster in message.author.roles)):
         print(overwrites)
         print(category)
-        print(str(command_contents[1]))
-        await message.guild.create_text_channel(str(command_contents[1]), overwrites=overwrites, category=category)
+        print(command_contents[1])
+        await message.guild.create_text_channel(command_contents[1], overwrites=overwrites, category=category)
         await message.channel.send('Channel ' + command_contents[1] + " created!")
 
   #If the message starts with '!devs'
