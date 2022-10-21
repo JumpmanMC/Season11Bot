@@ -113,12 +113,10 @@ async def on_message(message):
       eboard = discord.utils.get(message.guild.roles, name="Eboard")
       botmaster = discord.utils.get(message.guild.roles, name="BotMaster")
       if ((eboard in message.author.roles) | (botmaster in message.author.roles)):
-        print(overwrites)
-        print(category)
-        print(command_contents[1])
         await message.guild.create_text_channel(command_contents[1], overwrites=overwrites, category=category)
         await message.channel.send('Channel ' + command_contents[1] + " created!")
-
+      else:
+        await message.channel.send("You do not have permission stinky!!!!")
   #If the message starts with '!devs'
   if message.content.startswith('!devs'):
     #Output the new amsterdam message.
