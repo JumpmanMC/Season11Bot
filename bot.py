@@ -114,8 +114,8 @@ async def on_message(message):
       botmaster = discord.utils.get(message.guild.roles, name="BotMaster")
       if ((eboard in message.author.roles) | (botmaster in message.author.roles)):
         await message.guild.create_text_channel(command_contents[1], overwrites=overwrites, category=category)
-        await message.channel.send('Channel ' + command_contents[1] " created!")
-        
+        await message.channel.send('Channel ' + command_contents[1] + " created!")
+
   #If the message starts with '!devs'
   if message.content.startswith('!devs'):
     #Output the new amsterdam message.
