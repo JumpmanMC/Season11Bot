@@ -99,7 +99,6 @@ async def on_message(message):
         message.guild.default_role: discord.PermissionOverwrite(read_messages=False),
         message.guild.me: discord.PermissionOverwrite(read_messages=True)
       }
-      print(command_contents[1])
       #finds members with the head of logistics role
       hol = discord.utils.get(message.guild.roles, name="Head of Logistics")
       #open the channel to head of logistics
@@ -110,14 +109,13 @@ async def on_message(message):
       #open the channel to head of logistics
       overwrites[botm] = discord.PermissionOverwrite(read_messages=True)
 
-      category = discord.utils.get(message.guild.categories, name="Alliance Chats")
-      print(message.content[20:])
+      category = discord.utils.get(message.guild.categories, name="FUN CHANNELS")
       eboard = discord.utils.get(message.guild.roles, name="Eboard")
       botmaster = discord.utils.get(message.guild.roles, name="BotMaster")
       if ((eboard in message.author.roles) | (botmaster in message.author.roles)):
-        print("creating channel!" + message.content[20:])
-        #await message.guild.create_text_channel("a", overwrites=overwrites, category=category)
-
+        await message.guild.create_text_channel(command_contents[1], overwrites=overwrites, category=category)
+        await message.channel.send('Channel ' + command_contents[1] " created!")
+        
   #If the message starts with '!devs'
   if message.content.startswith('!devs'):
     #Output the new amsterdam message.
