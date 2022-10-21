@@ -111,7 +111,7 @@ async def on_message(message):
       overwrites[botm] = discord.PermissionOverwrite(read_messages=True)
 
       category = discord.utils.get(message.guild.categories, name="Alliance Chats")
-
+      print(message.content[20:])
       eboard = discord.utils.get(message.guild.roles, name="Eboard")
       botmaster = discord.utils.get(message.guild.roles, name="BotMaster")
       if ((eboard in message.author.roles) | (botmaster in message.author.roles)):
