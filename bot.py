@@ -116,7 +116,7 @@ async def on_message(message):
       botmaster = discord.utils.get(message.guild.roles, name="BotMaster")
       if ((eboard in message.author.roles) | (botmaster in message.author.roles)):
         print("creating channel!" + message.content[20:])
-        await message.guild.create_text_channel("a", overwrites=overwrites, category=category)
+        #await message.guild.create_text_channel("a", overwrites=overwrites, category=category)
 
   #If the message starts with '!devs'
   if message.content.startswith('!devs'):
