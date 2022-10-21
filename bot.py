@@ -110,11 +110,13 @@ async def on_message(message):
       #open the channel to head of logistics
       overwrites[botm] = discord.PermissionOverwrite(read_messages=True)
 
+      category = discord.utils.get(message.guild.categories, name="Alliance Chats")
+
       eboard = discord.utils.get(message.guild.roles, name="Eboard")
       botmaster = discord.utils.get(message.guild.roles, name="BotMaster")
       if ((eboard in message.author.roles) | (botmaster in message.author.roles)):
         print("creating channel!" + message.content[20:])
-        await message.guild.create_text_channel(message.content[20:], overwrites=overwrites)
+        await message.guild.create_text_channel(message.content[20:], overwrites=overwrites, category=category)
 
   #If the message starts with '!devs'
   if message.content.startswith('!devs'):
