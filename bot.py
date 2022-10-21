@@ -105,7 +105,7 @@ async def on_message(message):
       overwrites[hol] = discord.PermissionOverwrite(read_messages=True)
 
       #finds members with the head of logistics role
-      botm = discord.utils.get(message.guild.roles, name="Botmaster")
+      botm = discord.utils.get(message.guild.roles, name="BotMaster")
       #open the channel to head of logistics
       overwrites[botm] = discord.PermissionOverwrite(read_messages=True)
 
