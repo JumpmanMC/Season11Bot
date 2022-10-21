@@ -89,7 +89,7 @@ async def on_message(message):
     await message.channel.send("alliance_chat\ncommands\ndevs\nhelp\nhosts\nnew_amsterdam\nrequest_filmer\nwinners")
 
   #if the command starts with !create_open_channel
-  if message.content.startswith('!create_open_channel'):
+  if message.content.startswith('!create_channel'):
     command_contents = message.content.split()
     #throw error if fewer than 2 inputs
     if len(command_contents) < 2:
@@ -99,17 +99,22 @@ async def on_message(message):
         message.guild.default_role: discord.PermissionOverwrite(read_messages=False),
         message.guild.me: discord.PermissionOverwrite(read_messages=True)
       }
-
+      print(command_contents[1])
       #finds members with the head of logistics role
       hol = discord.utils.get(message.guild.roles, name="Head of Logistics")
       #open the channel to head of logistics
       overwrites[hol] = discord.PermissionOverwrite(read_messages=True)
 
+      #finds members with the head of logistics role
+      botm = discord.utils.get(message.guild.roles, name="Botmaster")
+      #open the channel to head of logistics
+      overwrites[botm] = discord.PermissionOverwrite(read_messages=True)
+
       eboard = discord.utils.get(message.guild.roles, name="Eboard")
       botmaster = discord.utils.get(message.guild.roles, name="BotMaster")
       if ((eboard in message.author.roles) | (botmaster in message.author.roles)):
+        print("creating channel!" + message.content[20:])
         await message.guild.create_text_channel(message.content[20:], overwrites=overwrites)
-        await message.channel.send("Thumbs up this message to join channel:" + message.content[20:])
 
   #If the message starts with '!devs'
   if message.content.startswith('!devs'):
