@@ -21,6 +21,11 @@ async def on_ready():
 #when a message is sent
 @client.event
 async def on_message(message):
+  #If the message starts with '!winners'
+  if message.content.startswith('!add_by_react'):
+    command_contents = message.content.split()
+    await message.channel.send("Thumbs up this message to join channel: " + command_contents[1])
+
   #if the command starts with !alliance_chat
   if message.content.startswith('!alliance_chat'):
     # creates array [!alliance_chat, input_1, input_2...]
@@ -218,9 +223,10 @@ async def on_reaction_add(reaction, user):
               #add the user to chanel and send filmer confirmation
               await channel.set_permissions(user, read_messages=True)
               await channel.send(str(user.display_name) + " is filming the requested meeting: " + reaction.message.content[17:].split('(')[0])
-           if(reaction.message.content[:38] == 'Thumbs up this message to join channel:'):
+           if(reaction.message.content[:38] == 'Thumbs up this message to join channel: '):
               chat_name = reaction.message.content.split(': ')[1]
               channel = discord.utils.get(client.get_all_channels(), name=chat_name)
+              print("worked!!!!")
               await channel.set_permissions(user, read_messages=True)
   
 #run bot
