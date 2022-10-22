@@ -223,7 +223,7 @@ async def on_reaction_add(reaction, user):
               #add the user to chanel and send filmer confirmation
               await channel.set_permissions(user, read_messages=True)
               await channel.send(str(user.display_name) + " is filming the requested meeting: " + reaction.message.content[17:].split('(')[0])
-           if(reaction.message.content[:38] == 'Thumbs up this message to join channel: '):
+           if(reaction.message.content[:39] == 'Thumbs up this message to join channel: '):
               chat_name = reaction.message.content.split(': ')[1]
               channel = discord.utils.get(client.get_all_channels(), name=chat_name)
               print("worked!!!!")
