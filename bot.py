@@ -225,9 +225,14 @@ async def on_reaction_add(reaction, user):
               await channel.send(str(user.display_name) + " is filming the requested meeting: " + reaction.message.content[17:].split('(')[0])
            if(reaction.message.content[:39] == 'Thumbs up this message to join channel:'):
               print("worked!!!!")
-              chat_name = reaction.message.content.split(': ')[1]
-              channel = discord.utils.get(client.get_all_channels(), name=chat_name)
-              await channel.set_permissions(user, read_messages=True)
+              eboard = discord.utils.get(reaction.message.guild.roles, name="Eboard")
+              botmaster = discord.utils.get(reaction.message.guild.roles, name="BotMaster")
+              if ((eboard in reaction.message.author.roles) | (botmaster in reaction.message.author.roles)):
+                chat_name = reaction.message.content.split(': ')[1]
+                channel = discord.utils.get(client.get_all_channels(), name=chat_name)
+                await channel.set_permissions(user, read_messages=True)
+              else
+                await reaction.message.channel.send("You do not have permission stinky!!!!")
   
 #run bot
 client.run(TOKEN)
