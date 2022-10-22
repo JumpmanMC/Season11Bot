@@ -231,7 +231,7 @@ async def on_reaction_add(reaction, user):
                 chat_name = reaction.message.content.split(': ')[1]
                 channel = discord.utils.get(client.get_all_channels(), name=chat_name)
                 await channel.set_permissions(user, read_messages=True)
-              else
+              else:
                 await reaction.message.channel.send("You do not have permission stinky!!!!")
   
 #run bot
