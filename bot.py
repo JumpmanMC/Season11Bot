@@ -10,9 +10,6 @@ from dotenv import load_dotenv
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 
-#set commands to start with '!'
-bot = commands.Bot(command_prefix='!')
-
 #on ready send confirmation of bot login
 @client.event
 async def on_ready():
@@ -21,9 +18,11 @@ async def on_ready():
 #when a message is sent
 @client.event
 async def on_message(message):
-  #If the message starts with '!winners'
+  #If the message starts with '!add_by_react'
   if message.content.startswith('!add_by_react'):
+    #split into [command, chat_name]
     command_contents = message.content.split()
+    #send message to react to
     await message.channel.send("Thumbs up this message to join channel: " + command_contents[1])
 
   #if the command starts with !alliance_chat
@@ -80,48 +79,62 @@ async def on_message(message):
       
       #If there were no duplicate names
       if duplicates == False:
-        #create channel with assembled name, overwrites and category
         try:
+          #create channel with assembled name, overwrites and category
           await message.guild.create_text_channel(chat_name, overwrites=overwrites, category=category)
+          #send confirmation message
           await message.channel.send('Chat ' + chat_name + ' created!')
         #error if it fails
         except:
+          #send error message
           await message.channel.send('Error creating chat! Make sure player names are spelled correctly!')
 
   #If the message starts with '!commands'
   if message.content.startswith('!commands'):
-    #Output the new amsterdam message.
-    await message.channel.send("alliance_chat\ncommands\ndevs\nhelp\nhosts\nnew_amsterdam\nrequest_filmer\nwinners")
+    #Output a list of the commands
+    await message.channel.send("add_by_react\nalliance_chat\ncommands\ncreate_channel\ndevs\nhelp\nhosts\nnew_amsterdam\nrequest_filmer\nwinners")
 
-  #if the command starts with !create_open_channel
+  #if the command starts with !create_channel
   if message.content.startswith('!create_channel'):
+    #split into [command, arg]
     command_contents = message.content.split()
     #throw error if fewer than 2 inputs
     if len(command_contents) < 2:
       await message.channel.send('Channel name needed!')
     else:
+      #generate permissions
       overwrites = {
         message.guild.default_role: discord.PermissionOverwrite(read_messages=False),
         message.guild.me: discord.PermissionOverwrite(read_messages=True)
       }
+
       #finds members with the head of logistics role
       hol = discord.utils.get(message.guild.roles, name="Head of Logistics")
       #open the channel to head of logistics
       overwrites[hol] = discord.PermissionOverwrite(read_messages=True)
 
-      #finds members with the head of logistics role
+      #finds members with the BotMaster role
       botm = discord.utils.get(message.guild.roles, name="BotMaster")
-      #open the channel to head of logistics
+      #open the channel to the Botmaster
       overwrites[botm] = discord.PermissionOverwrite(read_messages=True)
 
+      #add to category
       category = discord.utils.get(message.guild.categories, name="FUN CHANNELS")
+
+      #pull desired roles
       eboard = discord.utils.get(message.guild.roles, name="Eboard")
       botmaster = discord.utils.get(message.guild.roles, name="BotMaster")
+
+      #if command used by Eboard or Botmaster
       if ((eboard in message.author.roles) | (botmaster in message.author.roles)):
+        #create desired channel
         await message.guild.create_text_channel(command_contents[1], overwrites=overwrites, category=category)
+        #send confirmation message
         await message.channel.send('Channel ' + command_contents[1] + " created!")
       else:
-        await message.channel.send("You do not have permission stinky!!!!")
+        #send no perms message
+        await message.channel.send("You do not have permission to use this command!")
+
   #If the message starts with '!devs'
   if message.content.startswith('!devs'):
     #Output the new amsterdam message.
@@ -168,10 +181,13 @@ async def on_message(message):
     #throw error if fewer than 2 inputs
     if len(command_contents) < 2:
       await message.channel.send('Description of what will be filmed and when is needed!')
-    #get prod role
-    prod = discord.utils.get(message.guild.roles, name="Prod")
-    #sends the filming request to the filming channel
-    await channel.send("Filmer requested: " + message.content[15:] + " (::" + message.channel.name + ") " + prod.mention)
+    else:
+      #get prod role
+      prod = discord.utils.get(message.guild.roles, name="Prod")
+      #sends the filming request to the filming channel
+      await channel.send("Filmer requested: " + message.content[15:] + " (::" + message.channel.name + ") " + prod.mention)
+      #send confirmation message
+      await message.channel.send('Filmer request ' + message.content[15:] 'sent!')
 
   #If the message starts with '!winners'
   if message.content.startswith('!winners'):
