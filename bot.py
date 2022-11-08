@@ -10,6 +10,9 @@ from dotenv import load_dotenv
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 
+#set commands to start with '!'
+bot = commands.Bot(command_prefix='!')
+
 #on ready send confirmation of bot login
 @client.event
 async def on_ready():
