@@ -190,7 +190,7 @@ async def on_message(message):
     #sends the filming request to the filming channel
     await channel.send("Filmer requested: " + message.content[15:] + " (::" + message.channel.name + ") " + prod.mention)
     #send confirmation message
-    await message.channel.send('Filmer request ' + message.content[15:] + 'sent!')
+    await message.channel.send('Filmer request for ' + message.content[15:] + ' sent!')
 
   #If the message starts with '!winners'
   if message.content.startswith('!winners'):
