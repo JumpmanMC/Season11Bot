@@ -95,7 +95,7 @@ async def on_message(message):
   #If the message starts with '!commands'
   if message.content.startswith('!commands'):
     #Output a list of the commands
-    await message.channel.send("add_by_react\nalliance_chat\ncommands\ncreate_channel\ndevs\nhelp\nhosts\nnew_amsterdam\nrequest_filmer\nwinners")
+    await message.channel.send("add_by_react\nalliance_chat\ncommands\ncreate_channel\ndelete_chanel\ndevs\nhelp\nhosts\nnew_amsterdam\nrequest_filmer\nwinners")
 
   #if the command starts with !create_channel
   if message.content.startswith('!create_channel'):
