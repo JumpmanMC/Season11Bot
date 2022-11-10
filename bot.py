@@ -153,7 +153,7 @@ async def on_message(message):
       if ((eboard in message.author.roles) | (botmaster in message.author.roles)):
         #create desired channel
         channel = discord.utils.get(client.get_all_channels(), name=command_contents[1])
-        await message.guild.delete(channel)
+        await channel.delete()
         #send confirmation message
         await message.channel.send('Deleting channel: ' + command_contents[1])
       else:
