@@ -146,11 +146,11 @@ async def on_message(message):
     if len(command_contents) < 2:
       await message.channel.send('Channel name needed!')
     else:
-      eboard = discord.utils.get(message.guild.roles, name="Eboard")
-      botmaster = discord.utils.get(message.guild.roles, name="BotMaster")
+      hol = discord.utils.get(message.guild.roles, name="Head of Logistics")
+      host = discord.utils.get(message.guild.roles, name="Host")
 
-      #if command used by Eboard or Botmaster
-      if ((eboard in message.author.roles) | (botmaster in message.author.roles)):
+      #if command used by HOL or Host
+      if ((host in message.author.roles) | (hol in message.author.roles)):
         #create desired channel
         channel = discord.utils.get(client.get_all_channels(), name=command_contents[1])
         await channel.delete()
