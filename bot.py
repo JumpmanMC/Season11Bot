@@ -137,6 +137,27 @@ async def on_message(message):
       else:
         #send no perms message
         await message.channel.send("You do not have permission to use this command!")
+  
+  #if the command starts with !delete_channel
+  if message.content.startswith('!delete_channel'):
+    #split into [command, arg]
+    command_contents = message.content.split()
+    #throw error if fewer than 2 inputs
+    if len(command_contents) < 2:
+      await message.channel.send('Channel name needed!')
+    else:
+      eboard = discord.utils.get(message.guild.roles, name="Eboard")
+      botmaster = discord.utils.get(message.guild.roles, name="BotMaster")
+
+      #if command used by Eboard or Botmaster
+      if ((eboard in message.author.roles) | (botmaster in message.author.roles)):
+        #create desired channel
+        await message.guild.delete_text_channel(command_contents[1])
+        #send confirmation message
+        await message.channel.send('Deleting channel: ' + command_contents[1])
+      else:
+        #send no perms message
+        await message.channel.send("You do not have permission to use this command!")
 
   #If the message starts with '!devs'
   if message.content.startswith('!devs'):
@@ -244,9 +265,7 @@ async def on_reaction_add(reaction, user):
               await channel.send(str(user.display_name) + " is filming the requested meeting: " + reaction.message.content[17:].split('(')[0])
            if(reaction.message.content[:39] == 'Thumbs up this message to join channel:'):
                 chat_name = reaction.message.content.split(': ')[1]
-                print(chat_name)
                 channel = discord.utils.get(client.get_all_channels(), name=chat_name)
-                print(channel)
                 await channel.set_permissions(user, read_messages=True)
   
 #run bot
