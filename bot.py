@@ -270,4 +270,4 @@ async def on_reaction_add(reaction, user):
                 await channel.set_permissions(user, read_messages=True)
  
 #run bot
-client.run('MTA1MjA4Njk1OTU0MTA4MDE0NA.GI2oNx.32JhsUn9MWuWdcpGdMkR-u1tIV27Z-_q-LOCyY')
+client.run(TOKEN)
