@@ -8,8 +8,8 @@ charset-normalizer==2.0.4
 click==8.0.1
 colorama==0.4.4
 Deprecated==1.2.13
-discord==1.7.3
-discord.py==1.7.3
+discord==2.1.0
+discord.py==2.1.0
 gitdb==4.0.7
 GitPython==3.1.18
 idna==3.2
