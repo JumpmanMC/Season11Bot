@@ -3,9 +3,13 @@ import os
 import discord
 from discord.ext import commands
 from table2ascii import table2ascii as t2a, PresetStyle
- 
+
+intents = discord.Intents.default()
+intents.typing = False
+intents.presences = False
+
 #load client and environment
-client = discord.Client()
+client = discord.Client(intents=intents)
 from dotenv import load_dotenv
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
